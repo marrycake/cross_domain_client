@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "*.toml": "toml",
+    "*.ts": "plaintext",
+    "*.qss": "css",
+    "qwidget": "cpp",
+    "qtnetwork": "cpp",
+    "qdebug": "cpp",
+    "qstring": "cpp",
+    "chrono": "cpp",
+    "optional": "cpp",
+    "system_error": "cpp",
+    "iosfwd": "cpp",
+    "qtranslator": "cpp"
+  }
+}

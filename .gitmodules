@@ -1,0 +1,6 @@
+[submodule "third_partys/qt-material-widgets"]
+	path = third_partys/qt-material-widgets
+	url = https://github.com/Decodetalkers/qt-material-widgets.git
+[submodule "third_partys/cryptopp-cmake"]
+	path = third_partys/cryptopp-cmake
+	url = https://github.com/abdes/cryptopp-cmake.git

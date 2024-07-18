@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/btn">
+        <file alias="back">resource/btn/angle-left.png</file>
+        <file alias="upload">resource/btn/cloud-upload.png</file>
+        <file alias="home">resource/btn/home.png</file>
+        <file alias="refresh">resource/btn/refresh.png</file>
+    </qresource>
+</RCC>
