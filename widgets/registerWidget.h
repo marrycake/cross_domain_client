@@ -1,37 +1,45 @@
 #ifndef REGISTERWIDGET_H
 #define REGISTERWIDGET_H
 
-#include <QWidget>
-#include "qtmaterialtextfield.h"
-#include "qtmaterialflatbutton.h"
+#include <qpushbutton.h>
+
 #include <QComboBox>
+#include <QJsonObject>
+#include <QWidget>
 
-class RegisterWidget : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit RegisterWidget(QWidget *parent = nullptr);
-    ~RegisterWidget();
+#include "qtmaterialflatbutton.h"
+#include "qtmaterialtextfield.h"
 
-private:
-    void connectSignalSlots();
-    bool checkUserNameIsValid();
-    bool checkPasswordIsValid();
-    void requestServer();
 
-private slots:
-    void registerFunc();
+class RegisterWidget : public QWidget {
+  Q_OBJECT
+ public:
+  explicit RegisterWidget(QWidget *parent = nullptr);
+  ~RegisterWidget();
 
-signals:
-    void registerSuccess();
+ private:
+  void connectSignalSlots();
+  bool checkUserNameIsValid();
+  bool checkPasswordIsValid();
+  void requestServer();
+  void checkResponse(QJsonObject &json);
 
-private:
-    void initUI();
+ private slots:
+  void registerFunc();
 
-    QtMaterialTextField *userNameField;
-    QtMaterialTextField *passwdField;
-    QComboBox *userLevelField;
-    QtMaterialFlatButton *confirmButton;
+ signals:
+  void registerSuccess();
+  void switchToLogin();
+  void showPrompt(const QString &msg);
+
+ private:
+  void initUI();
+
+  QtMaterialTextField *userNameField;
+  QtMaterialTextField *passwdField;
+  QComboBox *userLevelField;
+  QPushButton *toLoginButton;
+  QtMaterialFlatButton *confirmButton;
 };
 
-#endif // REGISTERWIDGET_H
+#endif  // REGISTERWIDGET_H

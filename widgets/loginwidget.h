@@ -2,37 +2,40 @@
 #ifndef LOGINWIDGET_H
 #define LOGINWIDGET_H
 
+#include <QPushButton>
 #include <QWidget>
-#include "qtmaterialtextfield.h"
+
 #include "qtmaterialflatbutton.h"
+#include "qtmaterialtextfield.h"
 
-class LoginWidget : public QWidget
-{
-    Q_OBJECT
-public:
-    explicit LoginWidget(QWidget *parent = nullptr);
-    ~LoginWidget();
+class LoginWidget : public QWidget {
+  Q_OBJECT
+ public:
+  explicit LoginWidget(QWidget *parent = nullptr);
+  ~LoginWidget();
 
-private:
-    void connectSignalSlots();
-    bool checkUserNameIsValid();
-    bool checkPasswordIsValid();
-    void requestServer();
-    void checkResponse(QJsonObject &json);
+ private:
+  void connectSignalSlots();
+  bool checkUserNameIsValid();
+  bool checkPasswordIsValid();
+  void requestServer();
+  void checkResponse(QJsonObject &json);
 
-private slots:
-    void login();
+ private slots:
+  void login();
 
-signals:
-    void loginSuccess();
-    void loginFailed();
+ signals:
+  void loginSuccess();
+  void toRegister();
+  void showPrompt(const QString &msg);
 
-private:
-    void initUI();
+ private:
+  void initUI();
 
-    QtMaterialTextField *userNameField;
-    QtMaterialTextField *passwdField;
-    QtMaterialFlatButton *confirmButton;
+  QtMaterialTextField *userNameField;
+  QtMaterialTextField *passwdField;
+  QPushButton *registerButton;
+  QtMaterialFlatButton *confirmButton;
 };
 
-#endif // LOGINWIDGET_H
+#endif  // LOGINWIDGET_H

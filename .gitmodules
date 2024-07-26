@@ -4,3 +4,6 @@
 [submodule "third_partys/cryptopp-cmake"]
 	path = third_partys/cryptopp-cmake
 	url = https://github.com/abdes/cryptopp-cmake.git
+[submodule "third_partys/boost"]
+	path = third_partys/boost
+	url = https://github.com/boostorg/boost.git

@@ -9,6 +9,6 @@
 #define UPLOAD_IMG ":/btn/upload"
 
 static const QString CONF_DIR = "conf";
-static const QString APP_CONF_PATH = "appConf.xml"
+static const QString APP_CONF_PATH = "clientConf.xml";
 
 #endif // CONSTANS_H

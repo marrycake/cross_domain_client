@@ -2,18 +2,18 @@ cmake_minimum_required(VERSION 3.5)
 
 project(cross_domain_client VERSION 0.1 LANGUAGES CXX)
 
-
-set(CMAKE_PREFIX_PATH "D:\\windows\\depends\\Qt\\5.15.2\\msvc2019_64")
-
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+
+SET(BOOST_ROOT "C:\\Boost")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools Network Core Gui)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools Network Core Gui)
+find_package(Boost  REQUIRED COMPONENTS filesystem property_tree)
 
 set(TS_FILES cross_domain_client_zh_CN.ts)
 
@@ -22,6 +22,9 @@ file(GLOB WIDGET_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/widgets/*.cpp")
 
 file(GLOB HTTP_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/http/*.h")
 # file(GLOB HTTP_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/http/*.cpp")
+
+file(GLOB MODEL_HEADER "${CMAKE_CURRENT_SOURCE_DIR}/model/*.h")
+file(GLOB MODEL_RESOURCE "${CMAKE_CURRENT_SOURCE_DIR}/model/*.cpp")
 
 set(PROJECT_SOURCES
         main.cpp
@@ -33,11 +36,14 @@ set(PROJECT_SOURCES
         ${WIDGET_HEADER}
         ${WIDGET_RESOURCE}
         ${HTTP_HEADER}
+        ${MODEL_HEADER}
+        ${MODEL_RESOURCE}
         cross_domain_client.qrc
 )
 
 add_subdirectory(third_partys)
 add_subdirectory(utils)
+add_subdirectory(Encryption)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(cross_wdomain_client
@@ -66,7 +72,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(cross_domain_client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network components cryptopp::cryptopp UTILS)
+target_link_libraries(cross_domain_client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network components UTILS Encryption Boost::property_tree)
 
 set_target_properties(cross_domain_client PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

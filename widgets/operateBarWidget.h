@@ -1,22 +1,32 @@
 #ifndef OPERATEBARWIDGET_H
 #define OPERATEBARWIDGET_H
 
+#include <qobjectdefs.h>
+
 #include <QWidget>
+
 #include "qtmaterialiconbutton.h"
 
-class OperateBarWidget : public QWidget
-{
-public:
-    explicit OperateBarWidget(QWidget *parent = nullptr);
-    ~OperateBarWidget();
+class OperateBarWidget : public QWidget {
+  Q_OBJECT
+ public:
+  explicit OperateBarWidget(QWidget *parent = nullptr);
+  ~OperateBarWidget();
 
-private:
-    void initUI();
+ signals:
+  void backSign();
+  void homeSign();
+  void refreshSign();
+  void uploadSign();
 
-    QtMaterialIconButton *backBtn;
-    QtMaterialIconButton *homeBtn;
-    QtMaterialIconButton *refreshBtn;
-    QtMaterialIconButton *uploadBtn;
+ private:
+  void initUI();
+  void connnectSignalSlots();
+
+  QtMaterialIconButton *backBtn;
+  QtMaterialIconButton *homeBtn;
+  QtMaterialIconButton *refreshBtn;
+  QtMaterialIconButton *uploadBtn;
 };
 
-#endif // OPERATEBARWIDGET_H
+#endif  // OPERATEBARWIDGET_H

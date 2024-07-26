@@ -1,97 +1,112 @@
 
 #include "loginwidget.h"
-#include "QVBoxLayout"
+
+#include <qnamespace.h>
+
+#include <QLabel>
 #include <QString>
-#include <QDebug>
+
+#include "../clientconfig.h"
 #include "../http/QHttpmanger.h"
+#include "QVBoxLayout"
 #include "filesconstans.h"
 
-LoginWidget::LoginWidget(QWidget *parent)
-    : QWidget{parent}
-{
-    initUI();
+LoginWidget::LoginWidget(QWidget *parent) : QWidget{parent} {
+  initUI();
+  connectSignalSlots();
 }
 
-LoginWidget::~LoginWidget()
-{
+LoginWidget::~LoginWidget() {}
+
+void LoginWidget::initUI() {
+  QLabel *userNameLabel = new QLabel(tr("userName"), this);
+  QLabel *passwordLabel = new QLabel(tr("password"), this);
+
+  userNameField = new QtMaterialTextField(this);
+  userNameField->setLabel(tr("userName"));
+  userNameField->setMinimumWidth(500);
+  passwdField = new QtMaterialTextField(this);
+  passwdField->setLabel(tr("password"));
+  passwdField->setMinimumWidth(500);
+  registerButton = new QPushButton(this);
+  registerButton->setText(tr("no account"));
+  confirmButton = new QtMaterialFlatButton();
+  confirmButton->setText(tr("login"));
+  confirmButton->setMinimumWidth(500);
+
+  QVBoxLayout *hlayout = new QVBoxLayout(this);
+
+  QGridLayout *gridLayout = new QGridLayout(this);
+  gridLayout->setSpacing(5);
+  gridLayout->setContentsMargins(5, 5, 5, 5);
+
+  gridLayout->addWidget(userNameLabel, 0, 0, Qt::AlignRight);
+  gridLayout->addWidget(userNameField, 0, 1, 1, 2, Qt::AlignLeft);
+  gridLayout->addWidget(passwordLabel, 1, 0, Qt::AlignRight);
+  gridLayout->addWidget(passwdField, 1, 1, 1, 2, Qt::AlignLeft);
+  gridLayout->addWidget(registerButton, 2, 1, Qt::AlignLeft);
+  gridLayout->addWidget(confirmButton, 3, 0, 1, 3, Qt::AlignHCenter);
+
+  hlayout->addStretch();
+  hlayout->addLayout(gridLayout);
+  hlayout->addStretch();
+  this->setLayout(hlayout);
 }
 
-void LoginWidget::initUI()
-{
-    userNameField = new QtMaterialTextField(this);
-    userNameField->setLabel(tr("userName"));
-    userNameField->setMinimumWidth(500);
-    passwdField = new QtMaterialTextField(this);
-    passwdField->setLabel(tr("password"));
-    passwdField->setMinimumWidth(500);
-    confirmButton = new QtMaterialFlatButton();
-    confirmButton->setText(tr("login"));
-    confirmButton->setMinimumWidth(500);
-
-    QVBoxLayout *vlayout = new QVBoxLayout(this);
-    vlayout->addStretch();
-    vlayout->addWidget(userNameField, 0, Qt::AlignHCenter);
-    vlayout->addWidget(passwdField, 0, Qt::AlignHCenter);
-    vlayout->addWidget(confirmButton, 0, Qt::AlignHCenter);
-    vlayout->addStretch();
-    this->setLayout(vlayout);
+void LoginWidget::connectSignalSlots() {
+  connect(confirmButton, &QtMaterialFlatButton::clicked, this,
+          &LoginWidget::login);
+  connect(registerButton, &QPushButton::clicked, this,
+          &LoginWidget::toRegister);
 }
 
-void LoginWidget::connectSignalSlots()
-{
-    connect(confirmButton, &QtMaterialFlatButton::click, this, &LoginWidget::login);
+bool LoginWidget::checkUserNameIsValid() {
+  return !userNameField->text().isEmpty();
 }
 
-bool LoginWidget::checkUserNameIsValid()
-{
-    return !userNameField->text().isEmpty();
+bool LoginWidget::checkPasswordIsValid() {
+  return !passwdField->text().isEmpty();
 }
 
-bool LoginWidget::checkPasswordIsValid()
-{
-    return !passwdField->text().isEmpty();
+void LoginWidget::requestServer() {
+  QJsonObject json;
+  json["name"] = userNameField->text();
+  json["password"] = passwdField->text();
+  auto response = QHttpmanger::UrlRequestPost(
+      QString::fromStdString(ClientConfig::getInstance().getServerUrl()) +
+          LOGIN_ROUTE,
+      QJsonDocument(json).toJson(QJsonDocument::Compact));
+  QJsonDocument jsonDoc = QJsonDocument::fromJson(response.toUtf8());
+  if (jsonDoc.isNull() || !jsonDoc.isObject()) {
+    emit showPrompt(tr("response parse error"));
+    return;
+  }
+
+  QJsonObject responseJsonObject = jsonDoc.object();
+  checkResponse(responseJsonObject);
 }
 
-void LoginWidget::requestServer()
-{
-    QJsonObject json;
-    json["userName"] = userNameField->text();
-    json["passWord"] = passwdField->text();
-    auto response = QHttpmanger::UrlRequestPost(SERVER_URL + LOGIN_ROUTE, QJsonDocument(json).toJson(QJsonDocument::Compact));
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(response.toUtf8());
-    if (jsonDoc.isNull() || !jsonDoc.isObject())
-    {
-        emit loginFailed();
-        return;
-    }
-
-    QJsonObject responseJsonObject = jsonDoc.object();
+void LoginWidget::checkResponse(QJsonObject &json) {
+  int code = json.value("code").toInt();
+  if (code != 1) {
+    emit showPrompt(tr("username or password invalid"));
+    return;
+  }
+  auto data = json["data"].toString().toStdString();
+  ClientConfig::getInstance().changeToken(data);
+  emit loginSuccess();
 }
 
-void LoginWidget::checkResponse(QJsonObject &json)
-{
-    int code = json.value("code").toInt();
-    if (code != 1)
-    {
-        emit loginFailed();
-        return;
-    }
-    QString data = json["data"].toString();
-}
+void LoginWidget::login() {
+  if (!checkUserNameIsValid()) {
+    emit showPrompt(tr("user name is unvalid"));
+    return;
+  }
 
-void LoginWidget::login()
-{
-    if (!checkUserNameIsValid())
-    {
-        qDebug() << "user name is unvalid";
-        return;
-    }
+  if (!checkPasswordIsValid()) {
+    emit showPrompt(tr("password is unvalid"));
+    return;
+  }
 
-    if (!checkPasswordIsValid())
-    {
-        qDebug() << "password is unvalid";
-        return;
-    }
-
-    requestServer();
+  requestServer();
 }

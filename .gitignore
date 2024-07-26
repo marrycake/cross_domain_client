@@ -146,4 +146,6 @@ CMakeLists.txt.user*
 
 build
 
+.vs
+.vscode
 

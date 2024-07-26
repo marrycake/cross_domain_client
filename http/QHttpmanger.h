@@ -1,112 +1,110 @@
 #pragma once
+#include <QMap>
 #include <QtNetwork>
 #include <iostream>
-#include <QMap>
-class QHttpmanger
-{
-public:
-    static QString UrlRequestGet(const QString &url)
-    {
-        QNetworkAccessManager qnam;
-        const QUrl aurl(url);
-        QNetworkRequest qnr(aurl);
-        qnr.setRawHeader("Content-Type", "application/json");
 
-        QNetworkReply *reply = qnam.get(qnr);
+class QHttpmanger {
+ public:
+  static QString UrlRequestGet(const QString &url) {
+    QNetworkAccessManager qnam;
+    const QUrl aurl(url);
+    QNetworkRequest qnr(aurl);
+    qnr.setRawHeader("Content-Type", "application/json");
 
-        QEventLoop eventloop;
-        QObject::connect(reply, SIGNAL(finished()), &eventloop, SLOT(quit()));
-        eventloop.exec(QEventLoop::ExcludeUserInputEvents);
+    QNetworkReply *reply = qnam.get(qnr);
 
-        QTextCodec *codec = QTextCodec::codecForName("utf8");
-        QString replyData = codec->toUnicode(reply->readAll());
+    QEventLoop eventloop;
+    QObject::connect(reply, SIGNAL(finished()), &eventloop, SLOT(quit()));
+    eventloop.exec(QEventLoop::ExcludeUserInputEvents);
 
-        if (reply->error() != QNetworkReply::NoError)
-        {
-            std::cout << "Network request failed:" << reply->errorString().toStdString() << std::endl;
-        }
+    QTextCodec *codec = QTextCodec::codecForName("utf8");
+    QString replyData = codec->toUnicode(reply->readAll());
 
-        reply->deleteLater();
-        reply = nullptr;
-
-        return replyData;
+    if (reply->error() != QNetworkReply::NoError) {
+      std::cout << "Network request failed:"
+                << reply->errorString().toStdString() << std::endl;
     }
 
-    static QString UrlRequestGet(const QString &url, const QMap<QString, QString> &externalHeaders)
-    {
-        QNetworkAccessManager qnam;
-        const QUrl aurl(url);
-        QNetworkRequest qnr(aurl);
-        qnr.setRawHeader("Content-Type", "application/json");
-        for (auto it = externalHeaders.cbegin(); it != externalHeaders.cend(); ++it)
-        {
-            qnr.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
-        }
+    reply->deleteLater();
+    reply = nullptr;
 
-        QNetworkReply *reply = qnam.get(qnr);
+    return replyData;
+  }
 
-        QEventLoop eventloop;
-        QObject::connect(reply, SIGNAL(finished()), &eventloop, SLOT(quit()));
-        eventloop.exec(QEventLoop::ExcludeUserInputEvents);
-
-        QTextCodec *codec = QTextCodec::codecForName("utf8");
-        QString replyData = codec->toUnicode(reply->readAll());
-
-        if (reply->error() != QNetworkReply::NoError)
-        {
-            std::cout << "Network request failed:" << reply->errorString().toStdString() << std::endl;
-        }
-
-        reply->deleteLater();
-        reply = nullptr;
-
-        return replyData;
+  static QString UrlRequestGet(const QString &url,
+                               const QMap<QString, QString> &externalHeaders) {
+    QNetworkAccessManager qnam;
+    const QUrl aurl(url);
+    QNetworkRequest qnr(aurl);
+    qnr.setRawHeader("Content-Type", "application/json");
+    for (auto it = externalHeaders.cbegin(); it != externalHeaders.cend();
+         ++it) {
+      qnr.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
     }
 
-    static QString UrlRequestPost(const QString &url, const QString &post_data)
-    {
-        QNetworkAccessManager qnam;
-        const QUrl aurl(url);
-        QNetworkRequest qnr(aurl);
-        qnr.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
+    QNetworkReply *reply = qnam.get(qnr);
 
-        QNetworkReply *reply = qnam.post(qnr, post_data.toUtf8());
+    QEventLoop eventloop;
+    QObject::connect(reply, SIGNAL(finished()), &eventloop, SLOT(quit()));
+    eventloop.exec(QEventLoop::ExcludeUserInputEvents);
 
-        QEventLoop eventloop;
-        QObject::connect(reply, SIGNAL(finished()), &eventloop, SLOT(quit()));
-        eventloop.exec(QEventLoop::ExcludeUserInputEvents);
+    QTextCodec *codec = QTextCodec::codecForName("utf8");
+    QString replyData = codec->toUnicode(reply->readAll());
 
-        QTextCodec *codec = QTextCodec::codecForName("utf8");
-        QString replyData = codec->toUnicode(reply->readAll());
-
-        reply->deleteLater();
-        reply = nullptr;
-
-        return replyData;
+    if (reply->error() != QNetworkReply::NoError) {
+      std::cout << "Network request failed:"
+                << reply->errorString().toStdString() << std::endl;
     }
 
-    static QString UrlRequestPost(const QString &url, const QString &post_data, const QMap<QString, QString> &externalHeaders)
-    {
-        QNetworkAccessManager qnam;
-        const QUrl aurl(url);
-        QNetworkRequest qnr(aurl);
-        qnr.setRawHeader("Content-Type", "application/x-www-form-urlencoded");
-        for (auto it = externalHeaders.cbegin(); it != externalHeaders.cend(); ++it)
-        {
-            qnr.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
-        }
-        QNetworkReply *reply = qnam.post(qnr, post_data.toUtf8());
+    reply->deleteLater();
+    reply = nullptr;
 
-        QEventLoop eventloop;
-        QObject::connect(reply, SIGNAL(finished()), &eventloop, SLOT(quit()));
-        eventloop.exec(QEventLoop::ExcludeUserInputEvents);
+    return replyData;
+  }
 
-        QTextCodec *codec = QTextCodec::codecForName("utf8");
-        QString replyData = codec->toUnicode(reply->readAll());
+  static QString UrlRequestPost(const QString &url, const QString &post_data) {
+    QNetworkAccessManager qnam;
+    const QUrl aurl(url);
+    QNetworkRequest qnr(aurl);
+    qnr.setRawHeader("Content-Type", "application/json");
 
-        reply->deleteLater();
-        reply = nullptr;
+    QNetworkReply *reply = qnam.post(qnr, post_data.toUtf8());
 
-        return replyData;
+    QEventLoop eventloop;
+    QObject::connect(reply, SIGNAL(finished()), &eventloop, SLOT(quit()));
+    eventloop.exec(QEventLoop::ExcludeUserInputEvents);
+
+    QTextCodec *codec = QTextCodec::codecForName("utf8");
+    QString replyData = codec->toUnicode(reply->readAll());
+
+    reply->deleteLater();
+    reply = nullptr;
+
+    return replyData;
+  }
+
+  static QString UrlRequestPost(const QString &url, const QString &post_data,
+                                const QMap<QString, QString> &externalHeaders) {
+    QNetworkAccessManager qnam;
+    const QUrl aurl(url);
+    QNetworkRequest qnr(aurl);
+    qnr.setRawHeader("Content-Type", "application/json");
+    for (auto it = externalHeaders.cbegin(); it != externalHeaders.cend();
+         ++it) {
+      qnr.setRawHeader(it.key().toUtf8(), it.value().toUtf8());
     }
+    QNetworkReply *reply = qnam.post(qnr, post_data.toUtf8());
+
+    QEventLoop eventloop;
+    QObject::connect(reply, SIGNAL(finished()), &eventloop, SLOT(quit()));
+    eventloop.exec(QEventLoop::ExcludeUserInputEvents);
+
+    QTextCodec *codec = QTextCodec::codecForName("utf8");
+    QString replyData = codec->toUnicode(reply->readAll());
+
+    reply->deleteLater();
+    reply = nullptr;
+
+    return replyData;
+  }
 };

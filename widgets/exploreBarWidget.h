@@ -1,15 +1,28 @@
 #ifndef EXPLOREBARWIDGET_H
 #define EXPLOREBARWIDGET_H
 
+#include <qobjectdefs.h>
+
+#include <QListWidget>
 #include <QWidget>
+#include <memory>
 
-class ExploreBarWidget : public QWidget
-{
-public:
-    explicit ExploreBarWidget(QWidget *parent = nullptr);
-    ~ExploreBarWidget();
+#include "../model/fileItemModel.h"
 
-private:
+
+class ExploreBarWidget : public QWidget {
+  Q_OBJECT
+ public:
+  explicit ExploreBarWidget(QWidget *parent = nullptr);
+
+ private slots:
+  void onItemDoubleClicked(QListWidgetItem *item);
+
+ private:
+  void initUI();
+  void connectSignalSlots();
+
+  QListWidget *listView;
 };
 
-#endif // EXPLOREBARWIDGET_H
+#endif  // EXPLOREBARWIDGET_H
