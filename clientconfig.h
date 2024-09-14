@@ -5,6 +5,7 @@
 #include <string>
 
 #include "cryptopp/rsa.h"
+#include "model/userInfo.h"
 
 class ClientConfig {
  public:
@@ -15,22 +16,17 @@ class ClientConfig {
 
   const std::string& getServerUrl() { return serverUrl; }
 
-  const CryptoPP::RSA::PublicKey& getPublicKey() { return publicKey; }
-
-  const CryptoPP::RSA::PrivateKey& getPrivateKey() { return privateKey; }
+  UserInfo& getUserInfo() { return userInfo; }
 
   void setConfPath(const std::string& confPath) { this->confPath = confPath; }
 
   void load();
   void dump();
-  void changeToken(const std::string& token);
+  void redump();
 
  private:
   std::string serverUrl;
-  CryptoPP::RSA::PublicKey publicKey;
-  CryptoPP::RSA::PrivateKey privateKey;
-  std::string token;
-
+  UserInfo userInfo;
   std::string confPath;
 
   static std::string& getKeyRoot() {
@@ -43,6 +39,31 @@ class ClientConfig {
     return keyServerUrl;
   }
 
+  static std::string& getKeyUserInfo() {
+    static std::string keyUserInfo = "UserInfo";
+    return keyUserInfo;
+  }
+
+  static std::string& getKeyUserId() {
+    static std::string keyUserId = "UserId";
+    return keyUserId;
+  }
+
+  static std::string& getKeyUserName() {
+    static std::string keyUserName = "UserName";
+    return keyUserName;
+  }
+
+  static std::string& getKeyUserPrivilige() {
+    static std::string keyUserPrivilige = "UserPrivilige";
+    return keyUserPrivilige;
+  }
+
+  static std::string& getKeyToken() {
+    static std::string keyToken = "token";
+    return keyToken;
+  }
+
   static std::string& getKeyPublicKey() {
     static std::string keyPublicKey = "publicKey";
     return keyPublicKey;
@@ -51,11 +72,6 @@ class ClientConfig {
   static std::string& getKeyPrivateKey() {
     static std::string keyPrivateKey = "privateKey";
     return keyPrivateKey;
-  }
-
-  static std::string& getKeyToken() {
-    static std::string keyToken = "token";
-    return keyToken;
   }
 };
 

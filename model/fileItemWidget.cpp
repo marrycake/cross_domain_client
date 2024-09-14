@@ -5,6 +5,7 @@
 #include <qicon.h>
 #include <qlabel.h>
 #include <qnamespace.h>
+#include <qobjectdefs.h>
 #include <qpixmap.h>
 #include <qpushbutton.h>
 #include <qwidget.h>
@@ -24,6 +25,8 @@ void FileItemWidget::initUI() {
     image.load(FILE_ICON);
   } else if (fileInfo.getCategory() == DIR_CATEGORY) {
     image.load(FOLDER_ICON);
+  } else if (fileInfo.getCategory() == DOMAIN_CATEGORY) {
+    image.load(DOMAIN_ICON);
   }
 
   QLabel *imageLabel = new QLabel(this);
@@ -42,6 +45,8 @@ void FileItemWidget::initUI() {
             .scaled(30, 30, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     QIcon downloadIcon(downImage);
     QPushButton *downloadBtn = new QPushButton(downloadIcon, "");
+    connect(downloadBtn, &QPushButton::clicked,
+            [&, this]() { emit downloadFileById(fileInfo.getFileId()); });
     hLayout->addWidget(downloadBtn);
   }
   this->setLayout(hLayout);

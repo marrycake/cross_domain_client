@@ -7,3 +7,6 @@
 [submodule "third_partys/boost"]
 	path = third_partys/boost
 	url = https://github.com/boostorg/boost.git
+[submodule "third_partys/spdlog"]
+	path = third_partys/spdlog
+	url = https://github.com/gabime/spdlog.git

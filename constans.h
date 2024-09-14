@@ -11,4 +11,6 @@
 static const QString CONF_DIR = "conf";
 static const QString APP_CONF_PATH = "clientConf.xml";
 
-#endif // CONSTANS_H
+static const QString DOWNLOAD_DIR = "download";
+
+#endif  // CONSTANS_H

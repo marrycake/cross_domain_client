@@ -10,7 +10,6 @@
 #include "qtmaterialflatbutton.h"
 #include "qtmaterialtextfield.h"
 
-
 class RegisterWidget : public QWidget {
   Q_OBJECT
  public:

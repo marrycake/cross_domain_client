@@ -4,7 +4,12 @@
 #include <QString>
 #include <cstdint>
 
-enum FileCateGory { FILE_CATEGORY, DIR_CATEGORY, UNKOWN_CATEGORY };
+enum FileCateGory {
+  FILE_CATEGORY,
+  DIR_CATEGORY,
+  DOMAIN_CATEGORY,
+  UNKOWN_CATEGORY
+};
 
 class FileItemInfo {
  public:

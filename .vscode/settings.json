@@ -12,5 +12,9 @@
     "system_error": "cpp",
     "iosfwd": "cpp",
     "qtranslator": "cpp"
+  },
+  "cmake.debugConfig": {
+    "visualizerFile": "${workspaceFolder}/qt5.natvis",
+    "showDisplayString": true
   }
 }

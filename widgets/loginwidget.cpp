@@ -92,8 +92,15 @@ void LoginWidget::checkResponse(QJsonObject &json) {
     emit showPrompt(tr("username or password invalid"));
     return;
   }
-  auto data = json["data"].toString().toStdString();
-  ClientConfig::getInstance().changeToken(data);
+  QJsonObject dataObject = json["data"].toObject();
+  ClientConfig::getInstance().getUserInfo().setUserId(dataObject["id"].toInt());
+  ClientConfig::getInstance().getUserInfo().setUserName(
+      userNameField->text().toStdString());
+  ClientConfig::getInstance().getUserInfo().setUserPrivilige(
+      dataObject["level"].toInt());
+  ClientConfig::getInstance().getUserInfo().setToken(
+      dataObject["jwt"].toString().toStdString());
+  ClientConfig::getInstance().redump();
   emit loginSuccess();
 }
 

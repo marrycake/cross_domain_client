@@ -4,8 +4,7 @@
 #include <cstddef>
 #include <string>
 class HashGenerator {
-
-public:
+ public:
   static std::string sha256(const char *key, size_t keyLength, const char *data,
                             size_t dataLength);
   static std::string sha128(const char *key, size_t keyLength, const char *data,
@@ -14,7 +13,7 @@ public:
   static std::string sha128(const std::string &key, const std::string &data);
   static std::string sha256(const std::string &data);
 
-private:
+ private:
 };
 
-#endif // HASHGENERATOR_H
+#endif  // HASHGENERATOR_H

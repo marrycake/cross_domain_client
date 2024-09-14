@@ -1,11 +1,13 @@
 #include "rsaHelper.h"
-#include "config_int.h"
-#include "filters.h"
-#include "pssr.h"
+
 #include <cryptopp/base64.h>
 #include <cryptopp/files.h>
 #include <cryptopp/osrng.h>
 #include <cryptopp/rsa.h>
+
+#include "config_int.h"
+#include "filters.h"
+#include "pssr.h"
 
 using namespace CryptoPP;
 
@@ -19,7 +21,7 @@ RsaHelper::genKeyPair(uint32_t keySize) {
   RSA::PublicKey publicKey(parameters);
   return {publicKey, privateKey};
 }
-std::string RsaHelper::encrypt(CryptoPP::RSA::PublicKey &publicKey,
+std::string RsaHelper::encrypt(const CryptoPP::RSA::PublicKey &publicKey,
                                const std::string &data) {
   AutoSeededRandomPool rng;
   RSAES_OAEP_SHA_Encryptor encryptor(publicKey);
@@ -32,7 +34,7 @@ std::string RsaHelper::encrypt(CryptoPP::RSA::PublicKey &publicKey,
   return encryptMsg;
 }
 
-std::string RsaHelper::decrypt(CryptoPP::RSA::PrivateKey &privateKey,
+std::string RsaHelper::decrypt(const CryptoPP::RSA::PrivateKey &privateKey,
                                const std::string &encryptMsg) {
   // Decrypt message
   AutoSeededRandomPool rng;
@@ -42,12 +44,12 @@ std::string RsaHelper::decrypt(CryptoPP::RSA::PrivateKey &privateKey,
   StringSource(
       encryptMsg, true,
       new PK_DecryptorFilter(rng, decryptor,
-                             new StringSink(decryptMsg)) // PK_DecryptorFilter
-  );                                                     // StringSource
+                             new StringSink(decryptMsg))  // PK_DecryptorFilter
+  );                                                      // StringSource
   return decryptMsg;
 }
 
-std::string RsaHelper::sign(CryptoPP::RSA::PrivateKey &privateKey,
+std::string RsaHelper::sign(const CryptoPP::RSA::PrivateKey &privateKey,
                             const std::string &data) {
   // Sign message
   AutoSeededRandomPool rng;
@@ -56,7 +58,7 @@ std::string RsaHelper::sign(CryptoPP::RSA::PrivateKey &privateKey,
   std::string signature;
   StringSource(data, true,
                new SignerFilter(rng, signer,
-                                new StringSink(signature)) // SignerFilter
+                                new StringSink(signature))  // SignerFilter
   );
   return signature;
 }
@@ -67,28 +69,32 @@ bool RsaHelper::verify(const std::string &message, const std::string &signature,
   RSASS<PSS, SHA256>::Verifier verifier(publicKey);
 
   bool result = false;
-  StringSource(signature + message, true,
-               new SignatureVerificationFilter(
-                   verifier,
-                   new ArraySink((byte *)&result,
-                                 sizeof(result))) // SignatureVerificationFilter
-  );                                              // StringSource
+  StringSource(
+      signature + message, true,
+      new SignatureVerificationFilter(
+          verifier,
+          new ArraySink((byte *)&result,
+                        sizeof(result)))  // SignatureVerificationFilter
+  );                                      // StringSource
 
   return result;
 }
 
-CryptoPP::RSA::PublicKey
-RsaHelper::loadPublicKeyFromStr(const std::string &publicKeyStr) {
+CryptoPP::RSA::PublicKey RsaHelper::loadPublicKeyFromStr(
+    const std::string &publicKeyStr) {
   return loadPublicKeyFromStr(publicKeyStr.data(), publicKeyStr.size());
 }
 
-CryptoPP::RSA::PrivateKey
-RsaHelper::loadPrivateKeyFromStr(const std::string &privateKeyStr) {
+CryptoPP::RSA::PrivateKey RsaHelper::loadPrivateKeyFromStr(
+    const std::string &privateKeyStr) {
   return loadPrivateKeyFromStr(privateKeyStr.data(), privateKeyStr.size());
 }
 
-CryptoPP::RSA::PublicKey
-RsaHelper::loadPublicKeyFromStr(const char *publicKeyCh, size_t len) {
+CryptoPP::RSA::PublicKey RsaHelper::loadPublicKeyFromStr(
+    const char *publicKeyCh, size_t len) {
+  if (len == 0) {
+    return {};
+  }
   CryptoPP::RSA::PublicKey publicKey;
   ByteQueue queue;
   Base64Decoder decoder;
@@ -99,8 +105,11 @@ RsaHelper::loadPublicKeyFromStr(const char *publicKeyCh, size_t len) {
   return publicKey;
 }
 
-CryptoPP::RSA::PrivateKey
-RsaHelper::loadPrivateKeyFromStr(const char *privateKeyCh, size_t len) {
+CryptoPP::RSA::PrivateKey RsaHelper::loadPrivateKeyFromStr(
+    const char *privateKeyCh, size_t len) {
+  if (len == 0) {
+    return {};
+  }
   CryptoPP::RSA::PrivateKey privateKey;
   ByteQueue queue;
   Base64Decoder decoder;
@@ -111,8 +120,8 @@ RsaHelper::loadPrivateKeyFromStr(const char *privateKeyCh, size_t len) {
   return privateKey;
 }
 
-std::string
-RsaHelper::dumpPublicKeyToStr(const CryptoPP::RSA::PublicKey &publicKey) {
+std::string RsaHelper::dumpPublicKeyToStr(
+    const CryptoPP::RSA::PublicKey &publicKey) {
   // Save the public key to a string
   std::string publicKeyString;
   CryptoPP::Base64Encoder encoder(new StringSink(publicKeyString));
@@ -121,8 +130,8 @@ RsaHelper::dumpPublicKeyToStr(const CryptoPP::RSA::PublicKey &publicKey) {
   return publicKeyString;
 }
 
-std::string
-RsaHelper::dumpPrivateKeyToStr(const CryptoPP::RSA::PrivateKey &privateKey) {
+std::string RsaHelper::dumpPrivateKeyToStr(
+    const CryptoPP::RSA::PrivateKey &privateKey) {
   // Save the public key to a string
   std::string privateKeyString;
   CryptoPP::Base64Encoder encoder(new StringSink(privateKeyString));

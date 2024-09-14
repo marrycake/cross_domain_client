@@ -41,9 +41,11 @@ set(PROJECT_SOURCES
         cross_domain_client.qrc
 )
 
+add_subdirectory(framework)
 add_subdirectory(third_partys)
 add_subdirectory(utils)
 add_subdirectory(Encryption)
+add_subdirectory(dataEngine)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(cross_wdomain_client
@@ -72,7 +74,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(cross_domain_client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network components UTILS Encryption Boost::property_tree)
+target_link_libraries(cross_domain_client PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network components UTILS Encryption Boost::property_tree DataEngine FrameWork)
 
 set_target_properties(cross_domain_client PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

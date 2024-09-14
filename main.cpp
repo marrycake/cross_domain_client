@@ -15,6 +15,7 @@ int main(int argc, char *argv[]) {
   QApplication a(argc, argv);
 
   FileHelper::mkdirIfNotExist(CONF_DIR);
+  FileHelper::mkdirIfNotExist(DOWNLOAD_DIR);
   QString confPath = CONF_DIR + QDir::separator() + APP_CONF_PATH;
   ClientConfig::getInstance().setConfPath(confPath.toStdString());
   if (!FileHelper::checkFileExistence(confPath)) {
@@ -31,6 +32,13 @@ int main(int argc, char *argv[]) {
       break;
     }
   }
+
+  QFile file(":/style");  // Use the correct path to your CSS file
+  if (file.open(QFile::ReadOnly)) {
+    QString styleSheet = QLatin1String(file.readAll());
+    a.setStyleSheet(styleSheet);
+  }
+
   MainWindow w;
   w.show();
   return a.exec();

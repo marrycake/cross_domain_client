@@ -18,6 +18,7 @@ class OperateBarWidget : public QWidget {
   void homeSign();
   void refreshSign();
   void uploadSign();
+  void addFolderSign();
 
  private:
   void initUI();
@@ -27,6 +28,7 @@ class OperateBarWidget : public QWidget {
   QtMaterialIconButton *homeBtn;
   QtMaterialIconButton *refreshBtn;
   QtMaterialIconButton *uploadBtn;
+  QtMaterialIconButton *addFolderBtn;
 };
 
 #endif  // OPERATEBARWIDGET_H

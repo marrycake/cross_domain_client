@@ -2,6 +2,59 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>AddFolderDialog</name>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="31"/>
+        <source>Add Folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="32"/>
+        <source>folder name: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="33"/>
+        <source>folder privilege: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="39"/>
+        <source>first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="39"/>
+        <source>second</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="39"/>
+        <source>third</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="39"/>
+        <source>forth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="42"/>
+        <source>ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="44"/>
+        <source>cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/addFolderDialog.cpp" line="83"/>
+        <source>response parse error</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AppBarSettingsForm</name>
     <message>
         <location filename="third_partys/qt-material-widgets/examples/appbarsettingsform.ui" line="14"/>
@@ -167,6 +220,19 @@
         <location filename="build/third_partys/qt-material-widgets/examples/examples_autogen/include/ui_badgesettingsform.h" line="174"/>
         <location filename="build/third_partys/qt-material-widgets/examples/examples_autogen/include/ui_badgesettingsform.h" line="175"/>
         <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ChangeSkinWidget</name>
+    <message>
+        <location filename="framework/src/change_skin_widget.cpp" line="35"/>
+        <source>use skin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/change_skin_widget.cpp" line="50"/>
+        <source>download count:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -377,6 +443,43 @@
         <location filename="third_partys/qt-material-widgets/examples/drawersettingsform.ui" line="56"/>
         <location filename="build/third_partys/qt-material-widgets/examples/examples_autogen/include/ui_drawersettingsform.h" line="87"/>
         <source>Hide drawer</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FileExploreWidget</name>
+    <message>
+        <location filename="widgets/fileExploreWidget.cpp" line="44"/>
+        <source>current dir: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/fileExploreWidget.cpp" line="45"/>
+        <source>current domain: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/fileExploreWidget.cpp" line="136"/>
+        <location filename="widgets/fileExploreWidget.cpp" line="240"/>
+        <location filename="widgets/fileExploreWidget.cpp" line="284"/>
+        <location filename="widgets/fileExploreWidget.cpp" line="339"/>
+        <source>response parse error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/fileExploreWidget.cpp" line="144"/>
+        <location filename="widgets/fileExploreWidget.cpp" line="252"/>
+        <source>load files error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/fileExploreWidget.cpp" line="301"/>
+        <source>username or password invalid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/fileExploreWidget.cpp" line="376"/>
+        <source>file invalid</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -856,12 +959,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="widgets/loginwidget.cpp" line="102"/>
+        <location filename="widgets/loginwidget.cpp" line="109"/>
         <source>user name is unvalid</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="widgets/loginwidget.cpp" line="107"/>
+        <location filename="widgets/loginwidget.cpp" line="114"/>
         <source>password is unvalid</source>
         <translation type="unfinished"></translation>
     </message>
@@ -869,7 +972,7 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="mainwindow.cpp" line="62"/>
+        <location filename="mainwindow.cpp" line="72"/>
         <source>register success</source>
         <translation type="unfinished"></translation>
     </message>
@@ -879,6 +982,24 @@
     <message>
         <location filename="widgets/messageBoxDialog.cpp" line="11"/>
         <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MsgBox</name>
+    <message>
+        <location filename="framework/src/msg_box.cpp" line="83"/>
+        <source>close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/msg_box.cpp" line="84"/>
+        <source>confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/msg_box.cpp" line="85"/>
+        <source>cancel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1114,6 +1235,159 @@
     </message>
 </context>
 <context>
+    <name>SkinWidget</name>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="210"/>
+        <source>标题</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="211"/>
+        <source>close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="213"/>
+        <source>first page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="214"/>
+        <source>previous page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="215"/>
+        <source>next page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="216"/>
+        <source>last page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="218"/>
+        <source>profound life</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="218"/>
+        <source>blue sea</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="218"/>
+        <source>red heart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="218"/>
+        <source>lovely baby</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="218"/>
+        <source>transparent water</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="219"/>
+        <source>flower</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="219"/>
+        <source>great sunshine</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="219"/>
+        <source>shadow amazement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="219"/>
+        <source>life in blossom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="219"/>
+        <source>360 pet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="220"/>
+        <source>beautiful stone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="220"/>
+        <source>yellow energy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="220"/>
+        <source>magic world</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="220"/>
+        <source>intense emotion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="220"/>
+        <source>dream sky</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="221"/>
+        <source>angry bird</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="221"/>
+        <source>graceful jazz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="221"/>
+        <source>card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="221"/>
+        <source>summer cool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="221"/>
+        <source>blue world</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="222"/>
+        <source>woodwind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="222"/>
+        <source>pink mood</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="222"/>
+        <source>across time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/skin_widget.cpp" line="222"/>
+        <source>six year</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SliderSettingsForm</name>
     <message>
         <location filename="third_partys/qt-material-widgets/examples/slidersettingsform.ui" line="14"/>
@@ -1182,6 +1456,14 @@
         <location filename="third_partys/qt-material-widgets/examples/snackbarsettingsform.ui" line="39"/>
         <location filename="build/third_partys/qt-material-widgets/examples/examples_autogen/include/ui_snackbarsettingsform.h" line="47"/>
         <source>TODO</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SystemTray</name>
+    <message>
+        <location filename="framework/src/system_tray.cpp" line="18"/>
+        <source>open main view when click</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1288,6 +1570,30 @@
     </message>
 </context>
 <context>
+    <name>TitleWidget</name>
+    <message>
+        <location filename="framework/src/title_widget.cpp" line="97"/>
+        <location filename="framework/src/title_widget.cpp" line="102"/>
+        <source>sofeware_name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/title_widget.cpp" line="98"/>
+        <source>close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/title_widget.cpp" line="100"/>
+        <source>encrypt&amp;decrype</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="framework/src/title_widget.cpp" line="104"/>
+        <source>software_descrption</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ToggleSettingsForm</name>
     <message>
         <location filename="third_partys/qt-material-widgets/examples/togglesettingsform.ui" line="14"/>
@@ -1365,6 +1671,64 @@
         <location filename="third_partys/qt-material-widgets/examples/togglesettingsform.ui" line="154"/>
         <location filename="build/third_partys/qt-material-widgets/examples/examples_autogen/include/ui_togglesettingsform.h" line="211"/>
         <source>Use theme colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UploadFileDialog</name>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="32"/>
+        <source>upload file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="33"/>
+        <source>upload file: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="34"/>
+        <source>file privilege: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="40"/>
+        <source>first</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="40"/>
+        <source>second</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="40"/>
+        <source>third</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="40"/>
+        <source>forth</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="43"/>
+        <source>ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="45"/>
+        <source>cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="47"/>
+        <source>select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgets/uploadFileDialog.cpp" line="84"/>
+        <source>response parse error</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

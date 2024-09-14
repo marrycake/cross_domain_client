@@ -9,14 +9,15 @@
 
 #include "../model/fileItemModel.h"
 
-
 class ExploreBarWidget : public QWidget {
   Q_OBJECT
  public:
   explicit ExploreBarWidget(QWidget *parent = nullptr);
+  void updateUI(const QList<FileItemInfo> &fileItems);
 
- private slots:
-  void onItemDoubleClicked(QListWidgetItem *item);
+ signals:
+  void itemNCLickedSign(uint32_t n);
+  void downloadFileById(uint64_t fileId);
 
  private:
   void initUI();
